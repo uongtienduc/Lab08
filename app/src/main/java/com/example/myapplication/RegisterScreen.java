@@ -37,7 +37,14 @@ public class RegisterScreen extends AppCompatActivity {
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("user");
 
-                reference.setValue("First data storage");
+                String name = regName.getEditText().getText().toString();
+                String email = regEmail.getEditText().getText().toString();
+                String password = regPassword.getEditText().getText().toString();
+                String password2 = regPassword2.getEditText().getText().toString();
+
+                UserHelperClass helperClass = new UserHelperClass(name, email, password, password2);
+
+                reference.child(email).setValue(helperClass);
             }
         });
 
